@@ -1,0 +1,21 @@
+image_name,class,error_type,root_cause,label_error?,proposed_fix
+20260310_162545_jpg.rf.1b6206f896eb53f0a7aa031b1e978a2d.jpg,green light,Classification,Car labeled as green light in ground truth annotation,Yes,Relabel GT box from green light to vehicule
+20260310_162545_jpg.rf.1b6206f896eb53f0a7aa031b1e978a2d.jpg,green light,Missed GT,Parked car in traffic mistakenly labeled as green light,Yes,Clean dataset annotations and relabel as vehicule
+20260310_161508_jpg.rf.20294907176de6ccd5524b0c5eca4498.jpg,vehicule,False Positive,Real partially occluded vehicle was omitted in GT labels,Yes,Add missing bounding box annotation for parked car
+20260310_164940_jpg.rf.b74d1280539b9a6ef4e87ca84a2b01b6.jpg,crosswalk,False Positive,Blue rectangular Parking P sign mistaken for crosswalk sign,No,Add negative background examples or parking sign class
+20260310_162256_jpg.rf.3f8b20017788e6b3af5bf07c9d977d8c.jpg,crosswalk,False Positive,Blue direction arrow road sign mistaken for crosswalk sign,No,Train on diverse European road signs to reduce false alarms
+20260310_161938_jpg.rf.2007461799040707f39eb6eb413dd86f.jpg,roundabout 1,Missed GT,Small object size (15x18 px) and severe class underrepresentation,No,Collect more roundabout sign samples and test imgsz=1280
+20260311_120958_jpg.rf.20c1934965379cf1fb70e0564b011ffc.jpg,roundabout 1,Missed GT,Distant circular sign with low pixel resolution,No,High-resolution tiling or dedicated small object head (P2 layer)
+20260310_162657_jpg.rf.8a0e23531a4d16b55dd1539e7c19d112.jpg,roundabout 2,Missed GT,Tiny warning sign (<5 px width) lost in feature pyramid downsampling,No,Filter out sub-8px annotations or evaluate larger input size
+20260310_164752_jpg.rf.d9254a10bd3fd6e3ddfe225b660c5b95.jpg,roundabout 2,Missed GT,Distant triangular warning sign with minimal contrast,No,Data augmentation with scale jitter and more sign examples
+20260310_162229_jpg.rf.18e2d39acb0da4a78d4b7789ef6a0ddf.jpg,60,Missed GT,Distant circular 60 speed limit sign with blurry numerals,No,Add zoom/crop augmentations and train with imgsz=800
+20260310_164940_jpg.rf.b74d1280539b9a6ef4e87ca84a2b01b6.jpg,60,Missed GT,Extreme miniaturization (3x6 px) below detector receptive field,Unsure,Inspect if sub-pixel distant signs should be excluded from evaluation
+20260311_124431_jpg.rf.0952a0de7cd38dbaaa6201017ca33990.jpg,60,Missed GT,Low sample count in training and distance blur,No,Oversample speed limit classes during training
+20260310_162407_jpg.rf.dc88dd3661e1f9a01eac52f60022f96e.jpg,40,Missed GT,Speed sign partially occluded and overwhelmed by adjacent foreground cars,No,Mosaic augmentation to improve contextual sign detection
+20260310_163528_jpg.rf.ab987a4c8069d71159df4d207feef829.jpg,red light,Missed GT,Small distant traffic signal lamp (3 px width) on overhead gantry,No,Feature pyramid P2 layer or higher input resolution (800x800)
+20260310_161956_jpg.rf.773552395d56d27513fdad75c5a16f20.jpg,red light,False Positive,Background window architectural fixture confused as traffic lamp,No,Raise confidence threshold from 0.001 to 0.25+ and add hard negatives
+20260310_162201_jpg.rf.3c6adb23f525e9fb0d707392a0b601e2.jpg,green light,Missed GT,Overhead traffic signal mounted high above street plane,No,Include vertical perspective jitter in augmentations
+20260310_161522_jpg.rf.615c3d3a2969e9308f224edd86789747.jpg,pedestrian,Classification,Walking pedestrian with dark profile misclassified as bike,No,Train on hard negative pairs of pedestrians vs cyclists
+20260310_161755_jpg.rf.9f6f570a800ce9bf7b03c0245f13e002.jpg,pedestrian,Classification,Standing pedestrian against vehicle profile predicted as bike,No,Add more cyclist samples with clear bicycle wheels visible
+20260311_114221_jpg.rf.3f11283946f82379a68a4b703ca8db7e.jpg,bike,Missed GT,Extremely distant bicycle rider (2.5 px width) in background traffic,No,Increase input resolution or crop regions of interest
+20260310_162028_jpg.rf.42ec560396029da0b4d5893bc70aba41.jpg,pedestrian,Localisation,Overlapping pedestrians on sidewalk cause duplicated/shifted bounding box,No,Tune NMS IoU threshold and train with dense crowd augmentations

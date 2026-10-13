@@ -1,0 +1,1 @@
+experiment,model,imgsz,batch,epochs,augmentation,mAP50,mAP50_95,precision,recall,training_time_min,notesbaseine,YOLOv8n,640,4,50,default,0.356,0.231,0.789,0.320,53.6,Day 3 baseline
