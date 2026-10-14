@@ -36,6 +36,8 @@ zone = [
 
 # COCO IDs: person=0, car=2, motorcycle=3, bus=5, truck=7.
 vehicle_classes = [2, 3, 5, 7]
+cv2.namedWindow("YOLO Zone Counter", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("YOLO Zone Counter", 540, 960)
 
 while True:
     ret, frame = cap.read()
@@ -82,10 +84,11 @@ while True:
         (20, 40), cv2.FONT_HERSHEY_SIMPLEX,
         1, (0, 255, 0), 2
     )
+    display_frame = cv2.resize(frame, (540, 960))
+    cv2.imshow("YOLO Zone Counter", display_frame)
 
     writer.write(frame)
-    cv2.imshow("YOLO Zone Counter", frame)
-
+    
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 

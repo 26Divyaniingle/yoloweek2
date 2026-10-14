@@ -1,21 +1,18 @@
-# Python environment
+
 venv/
 .venv/
 __pycache__/
 *.py[cod]
-
-# Secrets
 .env
-.env.*
+.pytest_cache/
 
-# Dataset and media
-datasets/
-dataset/
-yolo_dataset/
-videos/
-images/
-
-# Model weights and generated runs
-*.pt
+# Large generated files
 runs/
+**/runs/
 outputs/
+logs/
+*.pt
+*.onnx
+*.mp4
+*.avi
+dataset/

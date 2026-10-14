@@ -39,8 +39,9 @@ while True:
     result = model.track(
         frame,
         persist=True,
-        tracker="bytetrack.yaml",
-        classes=[0],  # People; use [2, 3, 5, 7] for vehicles.
+        #tracker="bytetrack.yaml",
+        tracker="botsort.yaml",
+        classes=[2, 3, 5, 7],  # Vehicles: car, motorcycle, bus, truck
         conf=0.3,
         imgsz=640,
         verbose=False
@@ -88,7 +89,8 @@ while True:
     )
 
     writer.write(frame)
-    cv2.imshow("YOLO Tracking", frame)
+    display_frame = cv2.resize(frame, (540, 960))
+    cv2.imshow("YOLO Tracking", display_frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
